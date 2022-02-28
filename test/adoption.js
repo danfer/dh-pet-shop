@@ -25,6 +25,20 @@ contract("Adoption", function (/* accounts */) {
         assert.equal(adopter, accounts[0], "Incorrect owner address");
       });
 
+      it('Should get adopter address by pet id in array', async () => {
+        let adopters = await instance.getAdopters.call();
+
+        assert.equal(adopters[8], accounts[0], "Owner of pet id should be recorded at array");
+      });
+
+      it('Should throw if invalid pet id is given', async () => {
+        try {
+          await instance.adopt.sendTransaction(17, { from: accounts[0] });
+        } catch (error) {
+          assert.include(String(error), "revert", `Expected "revert" but instead got ${error}`);
+        }
+      });
+
      });
   });
 });
