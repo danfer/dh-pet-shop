@@ -34,6 +34,7 @@ contract("Adoption", function (/* accounts */) {
       it('Should throw if invalid pet id is given', async () => {
         try {
           await instance.adopt.sendTransaction(17, { from: accounts[0] });
+          assert.fail(true, false, "This function did not throw");
         } catch (error) {
           assert.include(String(error), "revert", `Expected "revert" but instead got ${error}`);
         }
