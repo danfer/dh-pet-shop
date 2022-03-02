@@ -25,7 +25,7 @@ App = {
 
   initWeb3: async function() {
     if (typeof web3 !== undefined) {
-      App.web3Provider = web3.currentProvider;
+      App.web3Provider = Web3.currentProvider;
     } else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
@@ -39,7 +39,7 @@ App = {
       var adoptionArtifact = data;
 
       App.contracts.adoption = TruffleContract(adoptionArtifact);
-      App.contracts.adoption.setProvider(app.web3Provider);
+      App.contracts.adoption.setProvider(App.web3Provider);
 
       return App.markAdopted();
     });
